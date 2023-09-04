@@ -1,8 +1,9 @@
 from django.shortcuts import redirect, render
 from restaurant.models import Restaurant, Menu, SuggestionBoard
 from .forms import MenuForm
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+@login_required(login_url='common:login')
 def restaurant_account(request):
     if request.method == "POST":
         form = MenuForm(request.POST)

@@ -7,3 +7,5 @@ urlpatterns = [
     path('', include("restaurant.urls")),
     path('', include("account.urls")),
 ]
+
+handler404 = 'common.views.page_not_found'

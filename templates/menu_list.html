@@ -12,8 +12,8 @@
         {% for menu in menu_list %}
             {% if menu.restaurant_id == restaurant.id %}
                 <div class="menu-item">
-                    <div class="menu-date">{{ menu.date }}</div>
-                    <div class="menu-name">{{ menu.menu_name|linebreaksbr }}</div>
+                    <div class="menu-date text-center">{{ menu.date }}</div>
+                    <div class="menu-name text-center">{{ menu.menu_name|linebreaksbr }}</div>
                 </div>
             {% endif %}
         {% endfor %}

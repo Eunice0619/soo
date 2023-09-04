@@ -4,8 +4,11 @@ from django.utils import timezone
 from restaurant.forms import RatingForm
 from django.urls import reverse
 from django.db.models import Avg
+import logging
+logger = logging.getLogger('final')
 
 def home(request):
+    logger.info("INFO 레벨로 출력")
     today = timezone.now().date()
     menus = Menu.objects.filter(date=today)
     restaurant_name = [menu.restaurant.restaurant_name for menu in menus]
@@ -54,6 +57,8 @@ def restaurant_detail(request, restaurant_id):
 
     # 해당 레스토랑의 별점 평균 계산
     average_rating = Review.objects.filter(restaurant=restaurant).aggregate(Avg('rating'))['rating__avg']
+    if average_rating is not None:
+        average_rating = round(average_rating, 1)
 
     context = {
         'restaurant': restaurant,

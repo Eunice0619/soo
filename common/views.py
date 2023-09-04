@@ -44,3 +44,6 @@ def password_change(request):
 
 def password_change_done(request):
     return render(request, 'common/password_change_done.html')
+
+def page_not_found(request, exception):
+    return render(request, 'common/404.html', {})
