@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: django
+  name: djangobuild
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: djangobuild
+  template:
+    metadata:
+      labels:
+        app: djangobuild
+    spec:
+      containers:
+        - name: deploy3
+          image: eunicesooyoung/dockerfile:v3
+          envForm:
+          - secretRef:
+              name: dj-sec
+          ports:
+            - containerPort: 8000
+          command: ["/bin/bash"]
+          args: ["-c", "python3 manage.py runserver 0.0.0.0:8000"]
+      restartPolicy: Always
